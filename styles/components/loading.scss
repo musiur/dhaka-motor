@@ -1,0 +1,8 @@
+@import '../globals.scss';
+
+.loading__container {
+    @apply fixed left-0 top-0 z-[201] flex min-h-[100vh] w-full items-center justify-center bg-[#00000050];
+}
+.loading__container_loader {
+    @apply rounded-full p-3 bg-white;
+}

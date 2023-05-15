@@ -1,14 +1,30 @@
 import { MessageContext } from '@/contexts/MessageProvider';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 const Message = ({ children }) => {
     const { message, setMessage } = useContext(MessageContext);
-    console.log({ message });
+
+    useEffect(() => {
+        setTimeout(() => {
+            setMessage(null);
+        }, 5000);
+    }, [message]);
+
     return (
-        <div>
-            <div>Message</div>
+        <>
+            {message ? (
+                <div
+                    className={`message__container ${
+                        message.type
+                            ? 'message__container_success'
+                            : 'message__container_error'
+                    }`}
+                >
+                    {message.message}
+                </div>
+            ) : null}
             {children}
-        </div>
+        </>
     );
 };
 

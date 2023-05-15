@@ -1,5 +1,5 @@
 import Footer from '@/components/Footer';
-import Navbar from '@/components/Navbar';
+import NavigationBar from '@/components/NavigationBar';
 import Loading from './Loading';
 import Message from './Message';
 import ContextWrapper from '@/contexts/ContextWrapper';
@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
         <ContextWrapper>
             <Message>
                 <Loading>
-                    <Navbar />
+                    <NavigationBar />
                     {children}
                     <Footer />
                 </Loading>

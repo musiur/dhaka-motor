@@ -3,10 +3,9 @@ import { LoadingContext } from '@/contexts/LoadingProvider';
 import { MessageContext } from '@/contexts/MessageProvider';
 import { UserContext } from '@/contexts/UserProvider';
 import { Input } from '@nextui-org/react';
-import Link from 'next/link';
 import { useContext, useEffect, useState } from 'react';
 
-const SignIn = () => {
+const ResetPassword = () => {
     const { setUser } = useContext(UserContext);
     const { setLoading } = useContext(LoadingContext);
     const { setMessage } = useContext(MessageContext);
@@ -36,7 +35,7 @@ const SignIn = () => {
         return obj;
     };
 
-    const FetchSignInAPI = async () => {
+    const FetchForgetPasswordAPI = async () => {
         setLoading(true);
         console.log(formData);
 
@@ -44,13 +43,13 @@ const SignIn = () => {
             setUser(true);
             setMessage({
                 type: true,
-                message: 'Sign in successful!',
+                message: 'Email sent to you!',
             });
         }, 5000);
     };
     useEffect(() => {
         if (Object.keys(errors).length === 0) {
-            FetchSignInAPI();
+            FetchForgetPasswordAPI();
         } else {
             console.log(errors);
         }
@@ -58,7 +57,8 @@ const SignIn = () => {
     return (
         <div className='form__container'>
             <form>
-                <h3>Welcome to DhakaMotors</h3>
+                <h3>Forget password</h3>
+                <p>We will send you an email to find your account</p>
                 <Input
                     labelPlaceholder={
                         errors.username ? errors.username : 'Username'
@@ -72,7 +72,7 @@ const SignIn = () => {
                 />
                 <Input.Password
                     labelPlaceholder={
-                        errors.password ? errors.password : 'Password'
+                        errors.password ? errors.password : 'New password'
                     }
                     bordered
                     color={errors.password ? 'error' : 'primary'}
@@ -82,18 +82,14 @@ const SignIn = () => {
                     status={errors.password ? 'error' : 'primary'}
                 />
 
-                <Link href='/forget-password' className='text-right'>
-                    Forget password?
-                </Link>
-
-                <ButtonG color='primary' text='Sign in' func={handleOnSubmit} />
-
-                <Link href='/signup' className='text-center'>
-                    Don't have account? Create a new
-                </Link>
+                <ButtonG
+                    color='primary'
+                    text='Find account'
+                    func={handleOnSubmit}
+                />
             </form>
         </div>
     );
 };
 
-export default SignIn;
+export default ResetPassword;

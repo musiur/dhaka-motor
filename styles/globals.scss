@@ -7,3 +7,12 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.container {
+    @apply max-w-[100vw] px-[3%] md:px-[5%] lg:px-[15%] xl:px-[20%];
+}
+
+.section {
+    @apply py-10 lg:py-20;
+}
+

@@ -6,7 +6,7 @@ import { Input } from '@nextui-org/react';
 import Link from 'next/link';
 import { useContext, useEffect, useState } from 'react';
 
-const SignIn = () => {
+const SignUp = () => {
     const { setUser } = useContext(UserContext);
     const { setLoading } = useContext(LoadingContext);
     const { setMessage } = useContext(MessageContext);
@@ -44,7 +44,7 @@ const SignIn = () => {
             setUser(true);
             setMessage({
                 type: true,
-                message: 'Sign in successful!',
+                message: 'Sign up successful!',
             });
         }, 5000);
     };
@@ -82,18 +82,14 @@ const SignIn = () => {
                     status={errors.password ? 'error' : 'primary'}
                 />
 
-                <Link href='/forget-password' className='text-right'>
-                    Forget password?
-                </Link>
+                <ButtonG color='primary' text='Sign up' func={handleOnSubmit} />
 
-                <ButtonG color='primary' text='Sign in' func={handleOnSubmit} />
-
-                <Link href='/signup' className='text-center'>
-                    Don't have account? Create a new
+                <Link href='/signin' className='text-center'>
+                    Already have account? Sign in
                 </Link>
             </form>
         </div>
     );
 };
 
-export default SignIn;
+export default SignUp;
