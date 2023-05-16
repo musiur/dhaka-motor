@@ -6,6 +6,8 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faListCheck } from '@fortawesome/free-solid-svg-icons';
 import { faDollar } from '@fortawesome/free-solid-svg-icons';
 import { faMotorcycle } from '@fortawesome/free-solid-svg-icons';
+import { faBox } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
 
 const DashboardNav = ({ children }) => {
     const Router = useRouter();
@@ -24,12 +26,18 @@ const DashboardNav = ({ children }) => {
         },
         {
             id: 2,
+            pathname: 'Orders',
+            link: '/dashboard/orders',
+            icon: faBox,
+        },
+        {
+            id: 3,
             pathname: 'Sells',
             link: '/dashboard/sells',
             icon: faDollar,
         },
         {
-            id: 3,
+            id: 4,
             pathname: 'Users',
             link: '/dashboard/users',
             icon: faListCheck,

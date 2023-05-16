@@ -2,14 +2,17 @@ import ButtonG from '@/components/ButtonG';
 import { LoadingContext } from '@/contexts/LoadingProvider';
 import { MessageContext } from '@/contexts/MessageProvider';
 import { UserContext } from '@/contexts/UserProvider';
+import Public from '@/layouts/Public';
 import { Input } from '@nextui-org/react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 
 const SignIn = () => {
     const { setUser } = useContext(UserContext);
     const { setLoading } = useContext(LoadingContext);
     const { setMessage } = useContext(MessageContext);
+    const Router = useRouter();
 
     const [formData, setFormData] = useState({
         username: '',
@@ -42,11 +45,16 @@ const SignIn = () => {
 
         setTimeout(() => {
             setUser(true);
+            sessionStorage.setItem('user', 'user');
+            setLoading(false);
             setMessage({
                 type: true,
                 message: 'Sign in successful!',
             });
+            Router.push('/dashboard/profile');
         }, 5000);
+
+        
     };
     useEffect(() => {
         if (Object.keys(errors).length === 0) {
@@ -56,43 +64,49 @@ const SignIn = () => {
         }
     }, [errors]);
     return (
-        <div className='form__container'>
-            <form>
-                <h3>Welcome to DhakaMotors</h3>
-                <Input
-                    labelPlaceholder={
-                        errors.username ? errors.username : 'Username'
-                    }
-                    bordered
-                    color='primary'
-                    shadow={false}
-                    onChange={handleOnChange}
-                    name='username'
-                    status={errors.username ? 'error' : 'primary'}
-                />
-                <Input.Password
-                    labelPlaceholder={
-                        errors.password ? errors.password : 'Password'
-                    }
-                    bordered
-                    color={errors.password ? 'error' : 'primary'}
-                    shadow={false}
-                    onChange={handleOnChange}
-                    name='password'
-                    status={errors.password ? 'error' : 'primary'}
-                />
+        <Public>
+            <div className='form__container'>
+                <form>
+                    <h3>Welcome to DhakaMotors</h3>
+                    <Input
+                        labelPlaceholder={
+                            errors.username ? errors.username : 'Username'
+                        }
+                        bordered
+                        color='primary'
+                        shadow={false}
+                        onChange={handleOnChange}
+                        name='username'
+                        status={errors.username ? 'error' : 'primary'}
+                    />
+                    <Input.Password
+                        labelPlaceholder={
+                            errors.password ? errors.password : 'Password'
+                        }
+                        bordered
+                        color={errors.password ? 'error' : 'primary'}
+                        shadow={false}
+                        onChange={handleOnChange}
+                        name='password'
+                        status={errors.password ? 'error' : 'primary'}
+                    />
 
-                <Link href='/forget-password' className='text-right'>
-                    Forget password?
-                </Link>
+                    <Link href='/forget-password' className='text-right'>
+                        Forget password?
+                    </Link>
 
-                <ButtonG color='primary' text='Sign in' func={handleOnSubmit} />
+                    <ButtonG
+                        color='primary'
+                        text='Sign in'
+                        func={handleOnSubmit}
+                    />
 
-                <Link href='/signup' className='text-center'>
-                    Don't have account? Create a new
-                </Link>
-            </form>
-        </div>
+                    <Link href='/signup' className='text-center'>
+                        Don't have account? Create a new
+                    </Link>
+                </form>
+            </div>
+        </Public>
     );
 };
 

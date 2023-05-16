@@ -9,6 +9,7 @@ import '@/styles/components/message.scss'
 import '@/styles/components/navigationbar.scss'
 import '@/styles/pages/signin.scss'
 import '@/styles/layouts/dashboardnav.scss'
+import '@/styles/layouts/cartsideover.scss'
 import Layout from '@/layouts/Layout';
 import NextUIWrapper from '@/layouts/NextUIWrapper';
 

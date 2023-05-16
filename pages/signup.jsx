@@ -14,6 +14,9 @@ const SignUp = () => {
     const [formData, setFormData] = useState({
         username: '',
         password: '',
+        email: '',
+        mobile: '',
+        address: '',
     });
     const [errors, setErrors] = useState(formData);
     const handleOnChange = (e) => {
@@ -28,6 +31,18 @@ const SignUp = () => {
         let obj = {};
         if (!data.username.trim()) {
             obj.username = 'Username is required!';
+        }
+
+        if (!data.email.trim()) {
+            obj.email = 'Email is required!';
+        }
+
+        if (!data.mobile.trim()) {
+            obj.mobile = 'Mobile is required!';
+        }
+
+        if (!data.address.trim()) {
+            obj.address = 'Address is required!';
         }
 
         if (!data.password.trim()) {
@@ -69,6 +84,37 @@ const SignUp = () => {
                     onChange={handleOnChange}
                     name='username'
                     status={errors.username ? 'error' : 'primary'}
+                />
+                <Input
+                    labelPlaceholder={errors.email ? errors.email : 'Email'}
+                    bordered
+                    color='primary'
+                    shadow={false}
+                    onChange={handleOnChange}
+                    name='email'
+                    status={errors.email ? 'error' : 'primary'}
+                    type='email'
+                />
+                <Input
+                    labelPlaceholder={errors.mobile ? errors.mobile : 'Mobile'}
+                    bordered
+                    color='primary'
+                    shadow={false}
+                    onChange={handleOnChange}
+                    name='mobile'
+                    status={errors.mobile ? 'error' : 'primary'}
+                    type='number'
+                />
+                <Input
+                    labelPlaceholder={
+                        errors.address ? errors.address : 'Address'
+                    }
+                    bordered
+                    color='primary'
+                    shadow={false}
+                    onChange={handleOnChange}
+                    name='address'
+                    status={errors.address ? 'error' : 'primary'}
                 />
                 <Input.Password
                     labelPlaceholder={

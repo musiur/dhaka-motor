@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { faSignOut } from '@fortawesome/free-solid-svg-icons';
 import { MessageContext } from '@/contexts/MessageProvider';
+import { CartContext } from '@/contexts/CartProvider';
 
 export const AcmeLogo = () => (
     <svg
@@ -38,6 +39,7 @@ export const AcmeLogo = () => (
 const NavigationBar = () => {
     const { user, setUser } = useContext(UserContext);
     const { setMessage } = useContext(MessageContext);
+    const { cart, setCart } = useContext(CartContext);
     const Router = useRouter();
     const collapseItems = [
         {
@@ -66,6 +68,13 @@ const NavigationBar = () => {
             message: 'Signed out!',
         });
         Router.push('/signin');
+    };
+
+    const OpenCart = () => {
+        setCart({
+            open: true,
+            items: [...cart.items],
+        });
     };
     return (
         <Navbar
@@ -105,18 +114,20 @@ const NavigationBar = () => {
                 })}
             </Navbar.Content>
             <Navbar.Content>
-                <Tooltip
-                    color='primary'
-                    content='Checkout your cart'
-                    placement='leftStart'
-                >
-                    <Badge color='error' content={5}>
-                        <FontAwesomeIcon
-                            icon={faShoppingCart}
-                            className='cursor-pointer text-xl'
-                        />
-                    </Badge>
-                </Tooltip>
+                <div onClick={OpenCart}>
+                    <Tooltip
+                        color='primary'
+                        content='Checkout your cart'
+                        placement='leftStart'
+                    >
+                        <Badge color='error' content={5}>
+                            <FontAwesomeIcon
+                                icon={faShoppingCart}
+                                className='cursor-pointer text-xl'
+                            />
+                        </Badge>
+                    </Tooltip>
+                </div>
 
                 {user ? (
                     <div className='flex items-center justify-center gap-5'>
@@ -132,7 +143,7 @@ const NavigationBar = () => {
                                 bordered
                                 squared
                                 onClick={() => Router.push('/dashboard')}
-                                className="cursor-pointer"
+                                className='cursor-pointer'
                             />
                         </Tooltip>
 

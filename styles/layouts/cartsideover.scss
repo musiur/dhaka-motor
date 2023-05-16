@@ -1,0 +1,9 @@
+@import "../globals.scss";
+
+.cart__container{
+    @apply fixed top-0 right-0 min-h-[100vh] overflow-y-scroll max-w-[300px] bg-white shadow-xl z-[203] p-2 lg:p-4;
+}
+
+.cart__container__close_icon {
+    @apply cursor-pointer
+}
