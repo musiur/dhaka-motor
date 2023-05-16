@@ -8,7 +8,11 @@ const Public = ({ children }) => {
 
     useEffect(() => {
         if (user) {
-            Router.push('/dashboard/profile');
+            if (sessionStorage.getItem('from')) {
+                Router.push(sessionStorage.getItem('from'));
+            } else {
+                Router.push('/dashboard/profile');
+            }
         }
     }, [user]);
 

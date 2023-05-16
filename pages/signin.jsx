@@ -51,10 +51,12 @@ const SignIn = () => {
                 type: true,
                 message: 'Sign in successful!',
             });
-            Router.push('/dashboard/profile');
+            if (sessionStorage.getItem('from')) {
+                Router.push(sessionStorage.getItem('from'));
+            } else {
+                Router.push('/dashboard/profile');
+            }
         }, 5000);
-
-        
     };
     useEffect(() => {
         if (Object.keys(errors).length === 0) {

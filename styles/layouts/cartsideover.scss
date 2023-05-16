@@ -1,9 +1,25 @@
-@import "../globals.scss";
+@import '../globals.scss';
 
-.cart__container{
-    @apply fixed top-0 right-0 min-h-[100vh] overflow-y-scroll max-w-[300px] bg-white shadow-xl z-[203] p-2 lg:p-4;
+.cart__container {
+    @apply fixed right-0 top-0 z-[203] min-h-[100vh] max-w-[300px] overflow-y-scroll bg-white p-2 shadow-xl lg:p-4;
 }
 
 .cart__container__close_icon {
-    @apply cursor-pointer
+    @apply cursor-pointer;
+}
+
+.cart__items__container {
+    @apply flex flex-col gap-4 py-5;
+}
+
+.cart__item {
+    @apply grid grid-cols-3 gap-2;
+}
+
+.cart__item:first-child {
+    @apply col-span-1;
+}
+
+.cart__item:last-child {
+    @apply col-span-2;
 }
