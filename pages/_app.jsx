@@ -1,4 +1,3 @@
-
 // import Font Awesome CSS
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
@@ -12,6 +11,7 @@ import '@/styles/pages/signin.scss';
 import '@/styles/layouts/dashboardnav.scss';
 import '@/styles/layouts/cartsideover.scss';
 import '@/styles/pages/bikes/bike.scss';
+import '@/styles/pages/checkout.scss';
 import Layout from '@/layouts/Layout';
 import NextUIWrapper from '@/layouts/NextUIWrapper';
 

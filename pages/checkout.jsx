@@ -1,4 +1,5 @@
 import ImageG from '@/components/ImageG';
+import Stripe from '@/components/Stripe';
 import { CartContext } from '@/contexts/CartProvider';
 import Private from '@/layouts/Private';
 import { useContext, useEffect } from 'react';
@@ -9,6 +10,17 @@ const Checkout = () => {
     useEffect(() => {
         sessionStorage.setItem('from', '/checkout');
     }, []);
+
+    const removeFromCart = (id) => {
+        const toSet = {
+            ...cart,
+            items: [...cart.items.filter((item) => item.id !== id)],
+        };
+        setCart(toSet);
+
+        sessionStorage.setItem('cart', JSON.stringify(toSet), 5);
+    };
+
     return (
         <Private>
             <div className='section container'>
@@ -28,6 +40,13 @@ const Checkout = () => {
                                         <div>
                                             <p className='font-bold'>{title}</p>
                                             <p>${price}</p>
+                                            <button
+                                                onClick={() =>
+                                                    removeFromCart(id)
+                                                }
+                                            >
+                                                Remove
+                                            </button>
                                         </div>
                                     </div>
                                 );
@@ -36,6 +55,7 @@ const Checkout = () => {
                             <div>No item added!</div>
                         )}
                     </div>
+                    {cart.items.length ? <Stripe/> : null}
                 </div>
             </div>
         </Private>

@@ -13,7 +13,7 @@
 }
 
 .cart__item {
-    @apply grid grid-cols-3 gap-2;
+    @apply grid grid-cols-2 gap-2;
 }
 
 .cart__item:first-child {
