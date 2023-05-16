@@ -1,3 +1,5 @@
+import ImageG from "@/components/ImageG";
+
 const Home = () => {
     return (
         <div className='section container'>
@@ -13,11 +15,9 @@ const Home = () => {
                         exercitation ut.
                     </p>
                 </div>
-                <img
-                    src='https://www.harley-davidson.com/content/dam/h-d/images/promo-images/2023/media-card/eghk-mc.jpg?impolicy=myresize&rw=700'
-                    alt='motorbike'
-                    className="mx-auto rounded-xl"
-                />
+                <div className='mx-auto w-full sm:w-[70%] lg:w-[60%]'>
+                    <ImageG src='https://www.harley-davidson.com/content/dam/h-d/images/promo-images/2023/media-card/eghk-mc.jpg?impolicy=myresize&rw=700' />
+                </div>
             </div>
         </div>
     );

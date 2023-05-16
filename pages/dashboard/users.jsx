@@ -1,10 +1,12 @@
-const { default: DashboardNav } = require('@/layouts/DashboardNav');
+import DashboardNav from "@/components/DashboardNav";
+
 
 const Users = () => {
     return (
-        <DashboardNav>
-            <div>users</div>
-        </DashboardNav>
+        <div className='dashboardnav__container'>
+            <DashboardNav />
+            <div>Users</div>
+        </div>
     );
 };
 

@@ -1,10 +1,10 @@
-import DashboardNav from '@/layouts/DashboardNav';
+import DashboardNav from '@/components/DashboardNav';
 
 const Dashboard = () => {
     return (
-        <DashboardNav>
-            <div>Dashboard</div>
-        </DashboardNav>
+        <div className='dashboardnav__container'>
+            <DashboardNav />
+        </div>
     );
 };
 

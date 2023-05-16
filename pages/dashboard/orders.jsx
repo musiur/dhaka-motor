@@ -1,7 +1,12 @@
-import DashboardNav from '@/layouts/DashboardNav';
+import DashboardNav from '@/components/DashboardNav';
 
 const Orders = () => {
-    return <DashboardNav>Orders</DashboardNav>;
+    return (
+        <div className='dashboardnav__container'>
+            <DashboardNav />
+            <div>orders</div>
+        </div>
+    );
 };
 
 export default Orders;

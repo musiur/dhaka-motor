@@ -1,3 +1,4 @@
+import ImageG from '@/components/ImageG';
 import Link from 'next/link';
 
 const Bikes = () => {
@@ -32,15 +33,19 @@ const Bikes = () => {
             <h1 className='text-center text-xl font-bold lg:text-2xl xl:text-4xl'>
                 Set out on something new
             </h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-10">
+            <div className='grid grid-cols-1 gap-10 py-10 md:grid-cols-2 lg:grid-cols-3'>
                 {Bikes.map((item) => {
                     const { id, image, title, description, link } = item;
                     return (
-                        <div key={id} className="grid grid-cols-1 gap-4">
-                            <img src={image} alt='image' className="rounded-t-xl w-full h-[350px]"/>
+                        <div key={id} className='grid grid-cols-1 gap-4'>
+                            <div className='w-full h-[340px]'>
+                                <ImageG src={image} />
+                            </div>
                             <div>
-                                <h3 className="text-lg lg:text-xl font-bold uppercase">{title}</h3>
-                                <p className="text-gray-400">{description}</p>
+                                <h3 className='text-lg font-bold uppercase lg:text-xl'>
+                                    {title}
+                                </h3>
+                                <p className='text-gray-400'>{description}</p>
                             </div>
                             <Link href={link}>Check details</Link>
                         </div>
