@@ -7,7 +7,7 @@ const ImageG = ({ src }) => {
                 src={src}
                 alt='motorbike'
                 fill
-                className='next__image rounded-xl'
+                className='next__image'
             />
         </div>
     );

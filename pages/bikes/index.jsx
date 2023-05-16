@@ -9,7 +9,7 @@ const Bikes = () => {
             title: 'Nightster Special',
             description:
                 'An escape into the night for two. The 2023 Nightster Special is a thrilling new ride in a classic Sportster silhouette.',
-            link: '#',
+            link: '/bikes/0',
         },
         {
             id: 1,
@@ -17,7 +17,7 @@ const Bikes = () => {
             title: 'Breakout',
             description:
                 'Make every night bike night with the 2023 Breakout 117-raked out cruiser dripping in chrome.',
-            link: '#',
+            link: '/bikes/1',
         },
         {
             id: 2,
@@ -25,7 +25,7 @@ const Bikes = () => {
             title: 'Freewheeler',
             description:
                 'Hot-rod attitude on three wheels, the 2023 Freewheeler delivers aggressive style, confidence and performance.',
-            link: '#',
+            link: '/bikes/2',
         },
     ];
     return (

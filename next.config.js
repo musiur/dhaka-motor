@@ -10,7 +10,7 @@ const nextConfig = {
         //     pathname: '/content/dam/h-d/images/promo-images/2023/media-card/**',
         //   }
         // ],
-        domains: ['www.harley-davidson.com'],
+        domains: ['www.harley-davidson.com', 'www.yamahamotorsports.com'],
     },
 };
 

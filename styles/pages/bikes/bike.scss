@@ -1,0 +1,23 @@
+@import '../../globals.scss';
+
+.bike__container {
+    h2 {
+        @apply  text-xl font-bold lg:text-4xl xl:text-5xl;
+    }
+
+    p {
+        @apply p-3 md:p-5 lg:p-10;
+    }
+}
+
+.bike__container__1st_section {
+    background: linear-gradient(to right, #00000095, #00000070),
+        url('https://www.yamahamotorsports.com/media/images_products/2023-yzf-r1/1920px/23-YAM-YZFR1N1L-US-DPBSE-ACT-1662-01.JPG.webp');
+
+    min-height: 600px;
+    background-position: center;
+
+    @extend .container, .section;
+
+    @apply flex flex-col items-center justify-center gap-3;
+}

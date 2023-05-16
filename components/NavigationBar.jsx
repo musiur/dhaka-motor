@@ -120,7 +120,7 @@ const NavigationBar = () => {
                         content='Checkout your cart'
                         placement='leftStart'
                     >
-                        <Badge color='error' content={5}>
+                        <Badge color='error' content={cart.items.length}>
                             <FontAwesomeIcon
                                 icon={faShoppingCart}
                                 className='cursor-pointer text-xl'
