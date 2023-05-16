@@ -1,12 +1,18 @@
-const { useState, createContext } = require('react');
+const { useState, createContext, useEffect } = require('react');
 
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
     const [cart, setCart] = useState({
         open: false,
-        items: []
+        items: [],
     });
+
+    useEffect(() => {
+        if (sessionStorage.getItem('cart')) {
+            setCart(JSON.parse(sessionStorage.getItem('cart')));
+        }
+    }, []);
 
     return (
         <CartContext.Provider value={{ cart, setCart }}>

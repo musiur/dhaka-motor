@@ -81,7 +81,7 @@ const NavigationBar = () => {
             shouldHideOnScroll
             isCompact
             variant='sticky'
-            className='container'
+            // className='container'
         >
             <Navbar.Brand
                 onClick={() => Router.push('/')}

@@ -10,6 +10,7 @@ const Bikes = () => {
             description:
                 'An escape into the night for two. The 2023 Nightster Special is a thrilling new ride in a classic Sportster silhouette.',
             link: '/bikes/0',
+            price: 17999,
         },
         {
             id: 1,
@@ -18,6 +19,7 @@ const Bikes = () => {
             description:
                 'Make every night bike night with the 2023 Breakout 117-raked out cruiser dripping in chrome.',
             link: '/bikes/1',
+            price: 17999,
         },
         {
             id: 2,
@@ -26,6 +28,7 @@ const Bikes = () => {
             description:
                 'Hot-rod attitude on three wheels, the 2023 Freewheeler delivers aggressive style, confidence and performance.',
             link: '/bikes/2',
+            price: 17999,
         },
     ];
     return (
@@ -35,7 +38,7 @@ const Bikes = () => {
             </h1>
             <div className='grid grid-cols-1 gap-10 py-10 md:grid-cols-2 lg:grid-cols-3'>
                 {Bikes.map((item) => {
-                    const { id, image, title, description, link } = item;
+                    const { id, image, title, description, link, price } = item;
                     return (
                         <div key={id} className='grid grid-cols-1 gap-4'>
                             <div className='w-full h-[340px]'>
@@ -46,6 +49,7 @@ const Bikes = () => {
                                     {title}
                                 </h3>
                                 <p className='text-gray-400'>{description}</p>
+                                <p className="text-3xl lg:text-5xl font-bold">${price}</p>
                             </div>
                             <Link href={link}>Check details</Link>
                         </div>
