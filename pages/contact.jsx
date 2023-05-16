@@ -1,4 +1,4 @@
-import ImageG from "@/components/ImageG";
+import ImageG from '@/components/ImageG';
 
 const Contact = () => {
     return (
@@ -18,7 +18,10 @@ const Contact = () => {
                     </p>
                 </div>
                 <div className='mx-auto w-full sm:w-[70%] lg:w-[60%]'>
-                    <ImageG src='https://www.harley-davidson.com/content/dam/h-d/images/promo-images/2023/media-card/eghk-mc.jpg?impolicy=myresize&rw=700' />
+                    <ImageG
+                        src='https://www.harley-davidson.com/content/dam/h-d/images/promo-images/2023/media-card/eghk-mc.jpg?impolicy=myresize&rw=700'
+                        priority
+                    />
                 </div>
             </div>
         </div>
