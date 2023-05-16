@@ -1,5 +1,11 @@
-const Dashboard = () => {
-    return <div className="container section">Dashboard</div>
-}
+import DashboardNav from '@/layouts/DashboardNav';
 
-export default Dashboard
+const Dashboard = () => {
+    return (
+        <DashboardNav>
+            <div>Dashboard</div>
+        </DashboardNav>
+    );
+};
+
+export default Dashboard;

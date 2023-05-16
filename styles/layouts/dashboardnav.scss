@@ -1,0 +1,41 @@
+@import "../globals.scss";
+
+.dashboardnav__container{
+    @extend .container, .section;
+
+    @apply grid grid-cols-12 gap-5 w-full;
+}
+
+.dashboardnav__container_nav {
+    @apply col-span-3 shadow-lg rounded-xl p-1;
+
+    h3 {
+        @apply text-lg lg:text-xl font-bold p-3 lg:p-5;
+    }
+
+    ul {
+        @apply pb-5;
+
+        li {
+            @apply px-5 py-1 rounded-xl flex items-center justify-start gap-2;
+
+            a {
+                @apply w-full;
+            }
+        }
+    }
+
+
+}
+
+.dashboardnav__container_nav__li {
+    @apply hover:bg-blue-400 hover:text-white;
+}
+
+.dashboardnav__container_nav__li__active {
+    @apply bg-blue-400 text-white hover:bg-blue-600 hover:text-white;
+}
+
+.dashboardnav__container_nav__li_icons {
+    @apply w-[35px];
+}
