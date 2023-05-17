@@ -142,7 +142,7 @@ const NavigationBar = () => {
                                 color='gradient'
                                 bordered
                                 squared
-                                onClick={() => Router.push('/dashboard')}
+                                onClick={() => Router.push('/dashboard/profile')}
                                 className='cursor-pointer'
                             />
                         </Tooltip>
