@@ -44,23 +44,25 @@ const SignIn = () => {
 
         try {
             const API = `${process.env.BASE_URL}/api/auth/signin`;
-            const response = await axios.post(API, {users: [formData]});
+            const response = await axios.post(API, { users: [formData] });
             if (response.status === 200) {
-                console.log(response)
+                console.log(response);
                 setUser(response.data.result);
                 setMessage({
                     type: true,
                     message: 'Sign in successful!',
                 });
+                sessionStorage.setItem("user", JSON.stringify(response.data.result))
+                Router.push(sessionStorage.getItem('from'));
             }
         } catch (error) {
-            console.log(error)
-            if (error.response.status === 404) {
+            console.log(error);
+            if (error?.response?.status === 404) {
                 setMessage({
                     type: false,
                     message: 'User not found!',
                 });
-            } else if (error.response.status === 401) {
+            } else if (error?.response?.status === 401) {
                 setMessage({
                     type: false,
                     message: 'Password not matched!',

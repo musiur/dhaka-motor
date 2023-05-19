@@ -39,3 +39,7 @@
 .dashboardnav__container_nav__li_icons {
     @apply w-[35px];
 }
+
+.dashboard__contents {
+    @apply sm:col-span-8 lg:col-span-9 px-2 lg:px-5 xl:px-10;
+}

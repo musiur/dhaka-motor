@@ -138,11 +138,17 @@ const NavigationBar = () => {
                         >
                             <Avatar
                                 size='lg'
-                                src='https://i.pravatar.cc/150?u=a042581f4e25056704b'
+                                src={
+                                    user
+                                        ? user.image
+                                        : 'https://i.pravatar.cc/150?u=a042581f4e25056704b'
+                                }
                                 color='gradient'
                                 bordered
                                 squared
-                                onClick={() => Router.push('/dashboard/profile')}
+                                onClick={() =>
+                                    Router.push('/dashboard/profile')
+                                }
                                 className='cursor-pointer'
                             />
                         </Tooltip>
