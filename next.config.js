@@ -2,15 +2,14 @@
 const nextConfig = {
     reactStrictMode: true,
     images: {
-        // remotePatterns: [
-        //   {
-        //     protocol: 'https',
-        //     hostname: 'www.harley-davidson.com',
-        //     port: '',
-        //     pathname: '/content/dam/h-d/images/promo-images/2023/media-card/**',
-        //   }
-        // ],
         domains: ['www.harley-davidson.com', 'www.yamahamotorsports.com'],
+    },
+    env: {
+        MYSQL_HOST: 'localhost',
+        MYSQL_PORT: '',
+        MYSQL_DATABASE: 'dhaka-motors',
+        MYSQL_USER: 'root',
+        MYSQL_PASSWORD: '',
     },
 };
 
