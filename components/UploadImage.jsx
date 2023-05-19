@@ -1,8 +1,8 @@
-import { PopContext } from 'context/PopProvider';
+import { MessageContext } from '@/contexts/MessageProvider';
 import { useContext, useEffect, useState } from 'react';
 
 const UploadImage = ({ type, func, name, defaultValue }) => {
-    const { setMessage } = useContext(PopContext);
+    const { setMessage } = useContext(MessageContext);
     // console.log({ defaultValue })
     const [postImage, setPostImage] = useState({
         myFile: defaultValue ? defaultValue : '',

@@ -1,9 +1,12 @@
 import ButtonG from '@/components/ButtonG';
+import UploadImage from '@/components/UploadImage';
 import { LoadingContext } from '@/contexts/LoadingProvider';
 import { MessageContext } from '@/contexts/MessageProvider';
 import { UserContext } from '@/contexts/UserProvider';
 import { Input } from '@nextui-org/react';
+import axios from 'axios';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 
 const SignUp = () => {
@@ -11,12 +14,19 @@ const SignUp = () => {
     const { setLoading } = useContext(LoadingContext);
     const { setMessage } = useContext(MessageContext);
 
+    const Router = useRouter();
+
+    const date = new Date();
+
     const [formData, setFormData] = useState({
         username: '',
         password: '',
         email: '',
         mobile: '',
         address: '',
+        role: 1,
+        image: '',
+        date: date.toLocaleDateString(),
     });
     const [errors, setErrors] = useState(formData);
     const handleOnChange = (e) => {
@@ -45,23 +55,46 @@ const SignUp = () => {
             obj.address = 'Address is required!';
         }
 
-        if (!data.password.trim()) {
-            obj.password = 'Password is required!';
+        if (!data.image.trim()) {
+            obj.image = 'Image is required!';
         }
         return obj;
     };
 
     const FetchSignInAPI = async () => {
         setLoading(true);
-        console.log(formData);
 
-        setTimeout(() => {
-            setUser(true);
-            setMessage({
-                type: true,
-                message: 'Sign up successful!',
-            });
-        }, 5000);
+        try {
+            const API = `${process.env.BASE_URL}/api/auth/signup`;
+            const response = await axios.post(API, { users: [formData] });
+            if (response.status === 200) {
+                setUser(response.data.result[0]);
+                setMessage({
+                    type: true,
+                    message: 'Sign up successful!',
+                });
+                Router.push('/signin');
+            }
+        } catch (error) {
+            if (error.response.status === 409) {
+                setMessage({
+                    type: false,
+                    message: 'User already exists!',
+                });
+            } else if (error.response.status === 404) {
+                setMessage({
+                    type: false,
+                    message: 'User not found!',
+                });
+            } else {
+                setMessage({
+                    type: false,
+                    message: 'Something went wrong!',
+                });
+            }
+        }
+
+        setLoading(false);
     };
     useEffect(() => {
         if (Object.keys(errors).length === 0) {
@@ -74,6 +107,28 @@ const SignUp = () => {
         <div className='form__container'>
             <form>
                 <h3>Welcome to DhakaMotors</h3>
+                {errors.image ? (
+                    <span className='px-3 py-[3px] text-red-600'>
+                        {errors.image}
+                    </span>
+                ) : null}
+                {formData.image ? (
+                    <UploadImage
+                        func={handleOnChange}
+                        name='image'
+                        label='Upload your banner'
+                        defaultValue={formData?.image}
+                    />
+                ) : null}
+                {formData.image === '' ? (
+                    <UploadImage
+                        func={handleOnChange}
+                        name='image'
+                        label='Upload your banner'
+                        defaultValue={formData?.image}
+                    />
+                ) : null}
+
                 <Input
                     labelPlaceholder={
                         errors.username ? errors.username : 'Username'
