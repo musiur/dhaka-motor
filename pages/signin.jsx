@@ -4,6 +4,7 @@ import { MessageContext } from '@/contexts/MessageProvider';
 import { UserContext } from '@/contexts/UserProvider';
 import Public from '@/layouts/Public';
 import { Input } from '@nextui-org/react';
+import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
@@ -12,7 +13,6 @@ const SignIn = () => {
     const { setUser } = useContext(UserContext);
     const { setLoading } = useContext(LoadingContext);
     const { setMessage } = useContext(MessageContext);
-    const Router = useRouter();
 
     const [formData, setFormData] = useState({
         username: '',
@@ -41,22 +41,39 @@ const SignIn = () => {
 
     const FetchSignInAPI = async () => {
         setLoading(true);
-        console.log(formData);
 
-        setTimeout(() => {
-            setUser(true);
-            sessionStorage.setItem('user', 'user');
-            setLoading(false);
-            setMessage({
-                type: true,
-                message: 'Sign in successful!',
-            });
-            if (sessionStorage.getItem('from')) {
-                Router.push(sessionStorage.getItem('from'));
-            } else {
-                Router.push('/dashboard/profile');
+        try {
+            const API = `${process.env.BASE_URL}/api/auth/signin`;
+            const response = await axios.post(API, {users: [formData]});
+            if (response.status === 200) {
+                console.log(response)
+                setUser(response.data.result);
+                setMessage({
+                    type: true,
+                    message: 'Sign in successful!',
+                });
             }
-        }, 5000);
+        } catch (error) {
+            console.log(error)
+            if (error.response.status === 404) {
+                setMessage({
+                    type: false,
+                    message: 'User not found!',
+                });
+            } else if (error.response.status === 401) {
+                setMessage({
+                    type: false,
+                    message: 'Password not matched!',
+                });
+            } else {
+                setMessage({
+                    type: false,
+                    message: 'Something went wrong!',
+                });
+            }
+        }
+
+        setLoading(false);
     };
     useEffect(() => {
         if (Object.keys(errors).length === 0) {
