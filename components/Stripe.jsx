@@ -31,7 +31,6 @@ const CheckoutForm = () => {
             const API = `${process.env.BASE_URL}/api/orders?username=admin`;
             const response = await axios.get(API);
             if (response.status === 200) {
-                console.log(response);
                 setOrders(response.data.result);
                 setMessage({
                     type: true,
@@ -39,7 +38,6 @@ const CheckoutForm = () => {
                 });
             }
         } catch (error) {
-            console.log(error);
             if (error?.response?.status === 404) {
                 setMessage({
                     type: false,
@@ -85,17 +83,15 @@ const CheckoutForm = () => {
             const API = `${process.env.BASE_URL}/api/orders/create`;
             const response = await axios.post(API, data);
             if (response.status === 200) {
-                console.log(response);
                 setMessage({
                     type: true,
                     message: 'Order completed successful!',
                 });
                 setCart({ type: false, items: [] });
-                sessionStorage.removeItem("cart")
+                sessionStorage.removeItem('cart');
                 Router.push('/dashboard/orders');
             }
         } catch (error) {
-            console.log(error);
             setMessage({
                 type: false,
                 message: 'Something went wrong!',
@@ -117,9 +113,11 @@ const CheckoutForm = () => {
             card: elements.getElement(CardElement),
         });
 
-        console.log({ error, paymentMethod });
-
         if (error) {
+            setMessage({
+                type: false,
+                message: 'Something went wrong!',
+            });
         } else {
             const date = new Date();
             const data = {

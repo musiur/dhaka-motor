@@ -26,19 +26,19 @@ const Checkout = () => {
             <div className='section container'>
                 <div>
                     <h1 className='pb-10 text-center text-xl font-bold md:text-2xl lg:text-3xl xl:text-4xl'>
-                        Checkout
+                        Checkout all your products
                     </h1>
-                    <div className='grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6'>
+                    <div className='flex flex-wrap items-center justify-center gap-5 pb-20'>
                         {cart.items.length ? (
                             cart.items.map((item) => {
-                                const { id, title, price, image } = item;
+                                const { id, name, price, thumbnail } = item;
                                 return (
-                                    <div key={id} className=''>
+                                    <div key={id} className='max-w-[200px]'>
                                         <div>
-                                            <ImageG src={image} />
+                                            <ImageG src={thumbnail} />
                                         </div>
                                         <div>
-                                            <p className='font-bold'>{title}</p>
+                                            <p className='font-bold'>{name}</p>
                                             <p>${price}</p>
                                             <button
                                                 onClick={() =>

@@ -13,6 +13,7 @@ const SignIn = () => {
     const { setUser } = useContext(UserContext);
     const { setLoading } = useContext(LoadingContext);
     const { setMessage } = useContext(MessageContext);
+    const Router = useRouter();
 
     const [formData, setFormData] = useState({
         username: '',
@@ -52,8 +53,12 @@ const SignIn = () => {
                     type: true,
                     message: 'Sign in successful!',
                 });
-                sessionStorage.setItem("user", JSON.stringify(response.data.result))
-                Router.push(sessionStorage.getItem('from'));
+                sessionStorage.setItem(
+                    'user',
+                    JSON.stringify(response.data.result)
+                );
+                const fromPathname = sessionStorage.getItem('from');
+                Router.push(fromPathname ? fromPathname : '/dashboard/profile');
             }
         } catch (error) {
             console.log(error);

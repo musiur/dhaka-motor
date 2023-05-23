@@ -109,7 +109,7 @@ const Footer = () => {
                 </div>
                 <div className='bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between container py-5'>
                     <span className='text-sm text-gray-500 dark:text-gray-300 sm:text-center'>
-                        © 2023 <a href='https://flowbite.com/'>Dhaka-Motors</a>.
+                        © 2023 <a href='https://flowbite.com/'>DhakaMotors</a>.
                         All Rights Reserved.
                     </span>
                     <div className='mt-4 flex space-x-6 sm:justify-center md:mt-0'>

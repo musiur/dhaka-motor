@@ -20,7 +20,6 @@ const Users = () => {
             const API = `${process.env.BASE_URL}/api/users?username=admin`;
             const response = await axios.get(API);
             if (response.status === 200) {
-                console.log(response);
                 setUsers(response.data.result);
                 setMessage({
                     type: true,
@@ -28,7 +27,6 @@ const Users = () => {
                 });
             }
         } catch (error) {
-            console.log(error);
             if (error?.response?.status === 404) {
                 setMessage({
                     type: false,
@@ -51,7 +49,6 @@ const Users = () => {
             const API = `${process.env.BASE_URL}/api/users/delete?username=${username}`;
             const response = await axios.delete(API);
             if (response.status === 200) {
-                console.log(response);
                 setUsers([
                     ...users.filter((item) => item.username !== username),
                 ]);
@@ -61,7 +58,6 @@ const Users = () => {
                 });
             }
         } catch (error) {
-            console.log(error);
             if (error?.response?.status === 404) {
                 setMessage({
                     type: false,
@@ -84,7 +80,7 @@ const Users = () => {
     useEffect(() => {
         user && FetchAllUsers();
     }, [user]);
-    console.log(users.length);
+    
     return (
         <Private>
             <div className='dashboardnav__container'>
@@ -94,13 +90,12 @@ const Users = () => {
                         Users
                     </h1>
                     <div className='flex flex-wrap items-center justify-start gap-4'>
-                        {/* grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 */}
                         {users.length
-                            ? users.map((item) => {
+                            ? users.filter(user => user.role === 1).map((item) => {
                                   const { username, image } = item;
                                   return (
                                       <div
-                                          item={username}
+                                          key={username}
                                           className='rounded-xl border shadow-md hover:shadow-2xl'
                                       >
                                           <div className='h-[200px] w-full overflow-hidden rounded-xl'>

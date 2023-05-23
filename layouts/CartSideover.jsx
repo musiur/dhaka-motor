@@ -31,6 +31,7 @@ const CartSideover = ({ children }) => {
         sessionStorage.setItem('cart', JSON.stringify(toSet), 5);
     };
 
+
     return (
         <div>
             {cart.open ? (
@@ -43,14 +44,14 @@ const CartSideover = ({ children }) => {
                     <div className='cart__items__container'>
                         {cart.items.length ? (
                             cart.items.map((item) => {
-                                const { id, title, price, image } = item;
+                                const { id, name, price, thumbnail } = item;
                                 return (
                                     <div key={id} className='cart__item '>
                                         <div>
-                                            <ImageG src={image} />
+                                            <ImageG src={thumbnail} />
                                         </div>
                                         <div>
-                                            <p>{title}</p>
+                                            <p>{name}</p>
                                             <p>${price}</p>
                                             <button
                                                 onClick={() =>

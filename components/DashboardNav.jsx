@@ -49,12 +49,12 @@ const DashboardNav = () => {
                         link: '/dashboard/orders',
                         icon: faBox,
                     },
-                    {
-                        id: 3,
-                        pathname: 'Sells',
-                        link: '/dashboard/sells',
-                        icon: faDollar,
-                    },
+                    // {
+                    //     id: 3,
+                    //     pathname: 'Sells',
+                    //     link: '/dashboard/sells',
+                    //     icon: faDollar,
+                    // },
                     {
                         id: 4,
                         pathname: 'Users',

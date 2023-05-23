@@ -3,11 +3,11 @@
 .dashboardnav__container{
     @extend .container, .section;
 
-    @apply grid grid-cols-1 sm:grid-cols-12 gap-5 w-full;
+    @apply flex flex-col sm:grid sm:grid-cols-12 gap-5 w-full;
 }
 
 .dashboardnav__container_nav {
-    @apply bg-white sm:col-span-4 lg:col-span-3 shadow-lg rounded-xl p-1;
+    @apply bg-white col-span-1 sm:col-span-4 lg:col-span-3 shadow-lg rounded-xl p-1;
 
     h3 {
         @apply text-lg lg:text-xl font-bold p-3 lg:p-5;
@@ -41,5 +41,5 @@
 }
 
 .dashboard__contents {
-    @apply sm:col-span-8 lg:col-span-9 px-2 lg:px-5 xl:px-10;
+    @apply col-span-1 sm:col-span-8 lg:col-span-9 px-2 lg:px-5 xl:px-10 w-full;
 }

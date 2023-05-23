@@ -1,15 +1,18 @@
 import ButtonG from '@/components/ButtonG';
 import ImageG from '@/components/ImageG';
 import { CartContext } from '@/contexts/CartProvider';
+import { LoadingContext } from '@/contexts/LoadingProvider';
 import { MessageContext } from '@/contexts/MessageProvider';
+import axios from 'axios';
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 const Bike = () => {
     const Router = useRouter();
     const pathname = parseInt(Router.query.slung);
     const { cart, setCart } = useContext(CartContext);
     const { setMessage } = useContext(MessageContext);
+    const { setLoading } = useContext(LoadingContext);
 
     const BikeDetails = {
         id: pathname,
@@ -47,9 +50,11 @@ const Bike = () => {
         ],
     };
 
+    const [bikes, setBikes] = useState(BikeDetails);
+
     const addToCart = () => {
         const AddBike = () => {
-            const toSet = { ...cart, items: [...cart.items, BikeDetails] };
+            const toSet = { ...cart, items: [...cart.items, bikes] };
             setCart(toSet);
             setMessage({
                 type: true,
@@ -60,7 +65,7 @@ const Bike = () => {
         };
         if (cart.items.length) {
             if (
-                cart.items.filter((item) => item.id === BikeDetails.id).length
+                cart.items.filter((item) => item.id === bikes.id).length
             ) {
                 setMessage({
                     type: false,
@@ -77,12 +82,60 @@ const Bike = () => {
     const removeFromCart = () => {
         const toSet = {
             ...cart,
-            items: [...cart.items.filter((item) => item.id !== BikeDetails.id)],
+            items: [...cart.items.filter((item) => item.id !== bikes.id)],
         };
         setCart(toSet);
 
         sessionStorage.setItem('cart', JSON.stringify(toSet), 5);
     };
+
+    const FetchAllBikes = async () => {
+        setLoading(true);
+        try {
+            const API = `${process.env.BASE_URL}/api/bikes?username=admin`;
+            const response = await axios.get(API);
+            // console.log(response);
+            if (response.status === 200) {
+                if (response.data.result.length) {
+                    setMessage({
+                        type: true,
+                        message: 'Bike data fetch successful!',
+                    });
+                    const bike = response.data.result.filter(
+                        (item) => item.id === pathname
+                    )[0];
+                    const toSet = {
+                        id: bike.id,
+                        images: JSON.parse(bike.images),
+                        price: bike.price,
+                        thumbnail: bike.thumbnail,
+                        warranty: bike.warranty,
+                        name: bike.name,
+                        description: bike.description,
+                    };
+                    setBikes(toSet);
+                } else {
+                    setMessage({
+                        type: false,
+                        message: 'No bike data found!',
+                    });
+                }
+            }
+        } catch (error) {
+            // console.log(error);
+            setMessage({
+                type: false,
+                message: 'Something went wrong!',
+            });
+        }
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        FetchAllBikes();
+    }, []);
+
+    console.log(bikes);
 
     return (
         <div>
@@ -93,7 +146,7 @@ const Bike = () => {
                         elit
                     </h2>
                     <p className='text-5xl font-bold xl:text-7xl'>
-                        ${BikeDetails.price}
+                        ${bikes.price}
                     </p>
                     <p className='p-3 md:p-5 lg:p-10'>
                         Dolor esse ad sint est quis cupidatat nostrud. Dolore
@@ -111,25 +164,15 @@ const Bike = () => {
                 <div className='section container'>
                     <div className='grid grid-cols-1 justify-items-center gap-10 sm:grid-cols-3'>
                         <ImageG
-                            src={BikeDetails.image}
+                            src={bikes.thumbnail}
                             className='col-span-1'
                         />
                         <div className='col-span-2 grid grid-cols-1 gap-5'>
                             <h2>
-                                Esse cupidatat deserunt aute non anim est culpa
-                                quis elit
+                                {bikes.name}
                             </h2>
                             <p>
-                                Dolor esse ad sint est quis cupidatat nostrud.
-                                Dolore nulla non duis ipsum ullamco. Ad ipsum et
-                                eiusmod magna laborum et pariatur exercitation
-                                ex occaecat ipsum. Velit in ad ipsum eu labore
-                                Lorem incididunt eu nostrud reprehenderit est
-                                id. Est laboris id occaecat culpa ad adipisicing
-                                commodo ut est laborum velit nisi commodo.
-                                Consectetur ut irure pariatur aliqua et amet
-                                velit sint anim reprehenderit eu cillum. Ea
-                                laborum enim ea minim nisi laborum nulla.
+                               {bikes.description}
                             </p>
                             <div className='flex items-center gap-4'>
                                 <ButtonG
@@ -156,8 +199,8 @@ const Bike = () => {
                 </div>
 
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
-                    {BikeDetails.images.map((image) => {
-                        return <ImageG src={image.image} key={image.id} />;
+                    {bikes.images.map((image, index) => {
+                        return <ImageG src={image} key={index} />;
                     })}
                 </div>
             </div>

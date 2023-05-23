@@ -19,3 +19,30 @@
 .next__image {
     position: relative !important;
 }
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-blue-50;
+}
+::-webkit-scrollbar-thumb {
+    @apply bg-blue-300;
+}
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-blue-400;
+}
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb:hover {
+    @apply rounded-full;
+}
+
+
+.nextui-button-text {
+    z-index: 1 !important;
+}

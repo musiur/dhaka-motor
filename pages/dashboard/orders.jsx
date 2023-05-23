@@ -81,12 +81,7 @@ const Orders = () => {
                                                     (td, i) => {
                                                         let images = [];
                                                         if (i === 6) {
-                                                            const temp =
-                                                                JSON.parse(td);
-                                                            images = temp.map(
-                                                                (tempImg) =>
-                                                                    tempImg.image
-                                                            );
+                                                            images = JSON.parse(td)
                                                         }
 
                                                         return (
@@ -116,7 +111,7 @@ const Orders = () => {
                                                                                     >
                                                                                         <ImageG
                                                                                             src={
-                                                                                                image
+                                                                                                image.thumbnail
                                                                                             }
                                                                                             alt=''
                                                                                         />
