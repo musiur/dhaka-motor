@@ -9,7 +9,6 @@ const Profile = () => {
     useEffect(() => {
         sessionStorage.setItem('from', '/dashboard/profile');
     }, []);
-    console.log(user);
     return (
         <Private>
             <div className='dashboardnav__container'>

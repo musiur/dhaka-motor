@@ -37,7 +37,6 @@ const ResetPassword = () => {
 
     const FetchForgetPasswordAPI = async () => {
         setLoading(true);
-        console.log(formData);
 
         setTimeout(() => {
             setUser(true);
@@ -50,9 +49,7 @@ const ResetPassword = () => {
     useEffect(() => {
         if (Object.keys(errors).length === 0) {
             FetchForgetPasswordAPI();
-        } else {
-            console.log(errors);
-        }
+        } 
     }, [errors]);
     return (
         <div className='form__container'>

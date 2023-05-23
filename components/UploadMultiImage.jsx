@@ -5,7 +5,6 @@ import { useContext, useEffect, useState } from 'react';
 
 const UploadMultiImage = ({ func, name, defaultValue }) => {
     const { setMessage } = useContext(MessageContext);
-    // console.log({ defaultValue })
     const [postImage, setPostImage] = useState({
         myFile: defaultValue ? defaultValue : [],
     });
@@ -39,8 +38,6 @@ const UploadMultiImage = ({ func, name, defaultValue }) => {
             },
         });
     }, [postImage]);
-
-    // console.log(postImage);
     return (
         <div className='rounded-md border bg-white p-2'>
             {postImage.myFile.length ? (

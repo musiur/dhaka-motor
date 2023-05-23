@@ -3,7 +3,6 @@ import excuteQuery from "../../../lib/database";
 export default async function handler(req, res) {
   try {
     const values = [...req.body.orders.map((item) => Object.values(item))];
-    console.log(values);
     let query = `INSERT INTO orders VALUES ?;`;
     const result = await excuteQuery({
       query, values: [values]
@@ -14,8 +13,6 @@ export default async function handler(req, res) {
       result,
     });
   } catch (error) {
-    console.log(req.body)
-    console.log(error)
     res.status(500).send({
       message: "Something went wrong!",
     });

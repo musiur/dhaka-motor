@@ -26,7 +26,6 @@ const Bikes = () => {
             const { username } = user;
             const API = `${process.env.BASE_URL}/api/bikes?username=${username}`;
             const response = await axios.get(API);
-            // console.log(response);
             if (response.status === 200) {
                 if (response.data.result.length) {
                     setMessage({
@@ -42,7 +41,6 @@ const Bikes = () => {
                 }
             }
         } catch (error) {
-            // console.log(error);
             setMessage({
                 type: false,
                 message: 'Something went wrong!',
@@ -55,8 +53,6 @@ const Bikes = () => {
         sessionStorage.setItem('from', '/dashboard/bikes');
         FetchAllBikes();
     }, []);
-
-    // console.log(bikes)
 
     return (
         <Private>

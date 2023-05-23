@@ -29,8 +29,6 @@ const UpdateBike = ({ setUpdateForm, bikes, setBikes, toUpdate }) => {
     const [formData, setFormData] = useState(defaultData);
     const [errors, setErrors] = useState({});
 
-    console.log(formData);
-
     const handleOnChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -56,7 +54,6 @@ const UpdateBike = ({ setUpdateForm, bikes, setBikes, toUpdate }) => {
     const UpdateBikeInformation = async () => {
         setLoading(true);
         try {
-            console.log(typeof formData.thumbnail);
             const data = {
                 id: toUpdate,
                 description: formData.description,
@@ -66,10 +63,8 @@ const UpdateBike = ({ setUpdateForm, bikes, setBikes, toUpdate }) => {
                 price: parseInt(formData.price),
                 thumbnail: formData.thumbnail,
             };
-            console.log({ data });
             const API = `${process.env.BASE_URL}/api/bikes/update`;
             const response = await axios.post(API, data);
-            // console.log(response);
             if (response.status === 200) {
                 setMessage({
                     type: true,
@@ -84,7 +79,6 @@ const UpdateBike = ({ setUpdateForm, bikes, setBikes, toUpdate }) => {
                 ]);
             }
         } catch (error) {
-            console.log(error);
             setMessage({
                 type: false,
                 message: 'Something went wrong!',

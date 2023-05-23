@@ -99,8 +99,6 @@ const SignUp = () => {
     useEffect(() => {
         if (Object.keys(errors).length === 0) {
             FetchSignInAPI();
-        } else {
-            console.log(errors);
         }
     }, [errors]);
     return (

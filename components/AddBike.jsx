@@ -81,7 +81,6 @@ const AddBike = ({ setAddForm, bikes, setBikes }) => {
             };
             const API = `${process.env.BASE_URL}/api/bikes/create`;
             const response = await axios.post(API, data);
-            console.log(response);
             if (response.status === 200) {
                 setMessage({
                     type: true,
@@ -90,7 +89,6 @@ const AddBike = ({ setAddForm, bikes, setBikes }) => {
                 setBikes([...bikes, data.bikes[0]]);
             }
         } catch (error) {
-            console.log(error);
             setMessage({
                 type: false,
                 message: 'Something went wrong!',

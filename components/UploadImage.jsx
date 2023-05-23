@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from 'react';
 
 const UploadImage = ({ type, func, name, defaultValue }) => {
     const { setMessage } = useContext(MessageContext);
-    // console.log({ defaultValue })
     const [postImage, setPostImage] = useState({
         myFile: defaultValue ? defaultValue : '',
     });

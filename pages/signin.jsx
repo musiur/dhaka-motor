@@ -47,7 +47,6 @@ const SignIn = () => {
             const API = `${process.env.BASE_URL}/api/auth/signin`;
             const response = await axios.post(API, { users: [formData] });
             if (response.status === 200) {
-                console.log(response);
                 setUser(response.data.result);
                 setMessage({
                     type: true,
@@ -61,7 +60,6 @@ const SignIn = () => {
                 Router.push(fromPathname ? fromPathname : '/dashboard/profile');
             }
         } catch (error) {
-            console.log(error);
             if (error?.response?.status === 404) {
                 setMessage({
                     type: false,
@@ -85,8 +83,6 @@ const SignIn = () => {
     useEffect(() => {
         if (Object.keys(errors).length === 0) {
             FetchSignInAPI();
-        } else {
-            console.log(errors);
         }
     }, [errors]);
     return (

@@ -8,7 +8,6 @@ export default async function handler(req, res) {
       });
     } else {
       const values = [...Object.values(req.body)];
-      console.log(values);
       let query = `UPDATE orders set payment = "${req.body.payment}",id = ${req.body.id},username = "${req.body.username}",price = ${req.body.price},date = "${req.body.date}",bikes = "${req.body.bikes}" where id = ${req.body.id}`;
       const result = await excuteQuery({
         query,
@@ -20,7 +19,6 @@ export default async function handler(req, res) {
       });
     }
   } catch (error) {
-    console.log(error)
     res.status(500).send({
       message: "Something went wrong!",
     });

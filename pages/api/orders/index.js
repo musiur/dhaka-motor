@@ -1,7 +1,6 @@
 import excuteQuery from "../../../lib/database";
 
 export default async function handler(req, res) {
-  console.log(req.query.username);
   try {
     if (!req.query.username) {
       res.status(401).send({

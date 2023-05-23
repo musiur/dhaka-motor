@@ -94,7 +94,6 @@ const Bike = () => {
         try {
             const API = `${process.env.BASE_URL}/api/bikes?username=admin`;
             const response = await axios.get(API);
-            // console.log(response);
             if (response.status === 200) {
                 if (response.data.result.length) {
                     setMessage({
@@ -122,7 +121,6 @@ const Bike = () => {
                 }
             }
         } catch (error) {
-            // console.log(error);
             setMessage({
                 type: false,
                 message: 'Something went wrong!',
@@ -135,7 +133,6 @@ const Bike = () => {
         FetchAllBikes();
     }, []);
 
-    console.log(bikes);
 
     return (
         <div>
