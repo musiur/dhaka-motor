@@ -10,7 +10,7 @@ const nextConfig = {
         MYSQL_DATABASE: 'dhaka-motors',
         MYSQL_USER: 'root',
         MYSQL_PASSWORD: '',
-        BASE_URL: 'http://localhost:3000'
+        BASE_URL: 'https://dhaka-motor.vercel.app'
     },
 };
 
