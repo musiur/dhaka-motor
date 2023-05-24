@@ -81,7 +81,6 @@ const NavigationBar = () => {
             shouldHideOnScroll
             isCompact
             variant='sticky'
-            // className='container'
         >
             <Navbar.Brand
                 onClick={() => Router.push('/')}
@@ -118,7 +117,7 @@ const NavigationBar = () => {
                     <Tooltip
                         color='primary'
                         content='Checkout your cart'
-                        placement='leftStart'
+                        placement='bottomEnd'
                     >
                         <Badge color='error' content={cart.items.length}>
                             <FontAwesomeIcon
@@ -134,7 +133,7 @@ const NavigationBar = () => {
                         <Tooltip
                             color='primary'
                             content='Profile'
-                            placement='leftStart'
+                            placement='bottomEnd'
                         >
                             <Avatar
                                 size='lg'
@@ -156,7 +155,7 @@ const NavigationBar = () => {
                         <Tooltip
                             color='error'
                             content='Logout'
-                            placement='leftStart'
+                            placement='bottomEnd'
                         >
                             <FontAwesomeIcon
                                 icon={faSignOut}

@@ -1,7 +1,7 @@
 @import '../globals.scss';
 
 .message__container {
-    @apply fixed right-[50px] top-[100px] rounded-md px-5 py-1 text-base font-semibold shadow-lg lg:rounded-lg lg:px-10 lg:py-3 lg:text-lg lg:shadow-xl text-white;
+    @apply fixed right-[50px] top-[100px] z-[400] rounded-md px-5 py-1 text-base font-semibold shadow-lg lg:rounded-lg lg:px-10 lg:py-3 lg:text-lg lg:shadow-xl text-white;
 }
 
 .message__container_success {

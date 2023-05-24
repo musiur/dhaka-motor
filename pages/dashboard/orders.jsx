@@ -2,6 +2,7 @@ import DashboardNav from '@/components/DashboardNav';
 import ImageG from '@/components/ImageG';
 import { LoadingContext } from '@/contexts/LoadingProvider';
 import { MessageContext } from '@/contexts/MessageProvider';
+import { UserContext } from '@/contexts/UserProvider';
 import Private from '@/layouts/Private';
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
@@ -12,6 +13,7 @@ const Orders = () => {
     }, []);
     const { setMessage } = useContext(MessageContext);
     const { setLoading } = useContext(LoadingContext);
+    const { user } = useContext(UserContext);
 
     const [orders, setOrders] = useState([]);
 
@@ -22,7 +24,13 @@ const Orders = () => {
             const API = `${process.env.BASE_URL}/api/orders?username=admin`;
             const response = await axios.get(API);
             if (response.status === 200) {
-                setOrders(response.data.result);
+                user.username != 'admin'
+                    ? setOrders(
+                          response.data.result.filter(
+                              (order) => order.username == user.username
+                          )
+                      )
+                    : setOrders(response.data.result);
                 setMessage({
                     type: true,
                     message: 'Data fetch successful!',
@@ -56,8 +64,9 @@ const Orders = () => {
                     <h1 className='mb-5 text-xl font-bold lg:text-3xl'>
                         Orders
                     </h1>
-                    <div className='overflow-x-scroll'>
-                        {orders.length ? (
+
+                    {orders.length ? (
+                        <div className='overflow-x-scroll'>
                             <table className='min-w-[600px]'>
                                 <thead className='rounded-t-xl bg-blue-400 text-white'>
                                     <tr>
@@ -81,7 +90,8 @@ const Orders = () => {
                                                     (td, i) => {
                                                         let images = [];
                                                         if (i === 6) {
-                                                            images = JSON.parse(td)
+                                                            images =
+                                                                JSON.parse(td);
                                                         }
 
                                                         return (
@@ -138,10 +148,10 @@ const Orders = () => {
                                     })}
                                 </tbody>
                             </table>
-                        ) : (
-                            'No orders found!'
-                        )}
-                    </div>
+                        </div>
+                    ) : (
+                        'No orders found!'
+                    )}
                 </div>
             </div>
         </Private>

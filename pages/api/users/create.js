@@ -14,7 +14,7 @@ export default async function handler(req, res) {
             result,
         });
     } catch (error) {
-        res.status(200).send({
+        res.status(500).send({
             message: 'Something went wrong!',
         });
     }
